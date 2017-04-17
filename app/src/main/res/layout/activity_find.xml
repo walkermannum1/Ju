@@ -35,6 +35,8 @@
 
             </android.support.v7.widget.Toolbar>
 
+            <include layout="@layout/title_layout"/>
+
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
