@@ -19,7 +19,7 @@ import java.io.LineNumberReader;
 
 public class FindAcitivity extends AppCompatActivity {
 
-    private TabLayout mTableLayout;
+    private TabLayout mTabLayout;
     private Toolbar mToolbar;
     private String[] TITLE = {"推荐", "房源", "体验", "攻略"};
     private CollapsingToolbarLayout mToolbarLayout;
@@ -35,6 +35,10 @@ public class FindAcitivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
+        mToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        mToolbar =(Toolbar) findViewById(R.id.toolbar);
+        mTabLayout = (TabLayout) findViewById(R.id.tablayout);
     }
 
     private enum CollapsingToolbarLayoutState {
