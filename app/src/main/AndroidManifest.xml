@@ -29,7 +29,7 @@
                        android:resource="@layout/searchable"/>
         </activity>
 
-        <activity android:name=".ui.FindAcitivity" >
+        <activity android:name=".ui.FindActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>

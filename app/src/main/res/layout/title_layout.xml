@@ -20,14 +20,18 @@
         android:textColor="@android:color/white" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@drawable/title_bg"
         android:drawableLeft="@android:drawable/ic_menu_my_calendar"
         android:drawablePadding="10dp"
+        android:gravity="center_vertical"
         android:padding="10dp"
         android:text="任何时间"
+        android:textAlignment="inherit"
         android:textColor="@android:color/white" />
 
     <TextView
@@ -37,6 +41,7 @@
         android:background="@drawable/title_bg"
         android:drawableLeft="@android:drawable/ic_menu_my_calendar"
         android:drawablePadding="10dp"
+        android:gravity="center_vertical"
         android:padding="10dp"
         android:text="人数"
         android:textColor="@android:color/white" />

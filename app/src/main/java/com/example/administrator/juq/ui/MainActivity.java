@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intent = new Intent(MainActivity.this, FindAcitivity.class);
+                    Intent intent = new Intent(MainActivity.this, FindActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.navigation_dashboard:
