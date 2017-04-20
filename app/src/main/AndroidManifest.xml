@@ -29,7 +29,8 @@
                        android:resource="@layout/searchable"/>
         </activity>
 
-        <activity android:name=".ui.FindActivity" >
+        <activity android:name=".ui.FindActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
