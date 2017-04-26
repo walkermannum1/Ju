@@ -67,9 +67,12 @@ public class SearchFragment extends Fragment {
         mSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                collapsingListener();
-                showAnim();
-                hideAnim();
+                mIvArrow.setVisibility(View.GONE);
+                mLlContent.startAnimation(mHideSet);
+                mLlContent.setVisibility(View.GONE);
+                mLlTitle.startAnimation(mShowSet);
+                mLlTitle.setVisibility(View.VISIBLE);
+                mLayoutState = CollapsingToolbarLayoutState.COLLAPSED;
             }
         });
         return view;
@@ -83,13 +86,9 @@ public class SearchFragment extends Fragment {
     }
 
     private void initData() {
-        mIvArrow.setVisibility(View.GONE);
-        mLlContent.startAnimation(mHideSet);
-        mLlContent.setVisibility(View.GONE);
-        mLlTitle.startAnimation(mShowSet);
-        mLlTitle.setVisibility(View.VISIBLE);
-        mIvArrow.setVisibility(View.GONE);
-        mLayoutState = CollapsingToolbarLayoutState.COLLAPSED;
+        collapsingListener();
+        showAnim();
+        hideAnim();
     }
 
     private void collapsingListener() {
