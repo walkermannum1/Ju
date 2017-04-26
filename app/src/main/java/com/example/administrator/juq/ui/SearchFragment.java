@@ -6,6 +6,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.administrator.juq.R;
 
@@ -37,6 +39,7 @@ public class SearchFragment extends Fragment {
     private LinearLayout mLlTitle;
     private AnimationSet mHideSet;
     private AnimationSet mShowSet;
+    private TextView mSearch;
     private static SearchFragment fragment = null;
     public static Fragment newInstance() {
         if (fragment == null){
@@ -58,8 +61,17 @@ public class SearchFragment extends Fragment {
         mLlContent = (LinearLayout) view.findViewById(R.id.ll_content);
         mIvArrow = (ImageView) view.findViewById(R.id.up_arrow);
         mLlTitle = (LinearLayout) view.findViewById(R.id.ll_title);
+        mSearch = (TextView) view.findViewById(R.id.search);
         initTabLayout();
         initData();
+        mSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collapsingListener();
+                showAnim();
+                hideAnim();
+            }
+        });
         return view;
     }
 
@@ -71,9 +83,13 @@ public class SearchFragment extends Fragment {
     }
 
     private void initData() {
-        collapsingListener();
-        showAnim();
-        hideAnim();
+        mIvArrow.setVisibility(View.GONE);
+        mLlContent.startAnimation(mHideSet);
+        mLlContent.setVisibility(View.GONE);
+        mLlTitle.startAnimation(mShowSet);
+        mLlTitle.setVisibility(View.VISIBLE);
+        mIvArrow.setVisibility(View.GONE);
+        mLayoutState = CollapsingToolbarLayoutState.COLLAPSED;
     }
 
     private void collapsingListener() {
@@ -89,15 +105,18 @@ public class SearchFragment extends Fragment {
                     }
                 } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
                     if (mLayoutState != CollapsingToolbarLayoutState.COLLAPSED) {
+                        mIvArrow.setVisibility(View.GONE);
                         mLlContent.startAnimation(mHideSet);
                         mLlContent.setVisibility(View.GONE);
                         mLlTitle.startAnimation(mShowSet);
                         mLlTitle.setVisibility(View.VISIBLE);
+                        mIvArrow.setVisibility(View.GONE);
                         mLayoutState = CollapsingToolbarLayoutState.COLLAPSED;
                     }
                 } else {
                     if (mLayoutState != CollapsingToolbarLayoutState.INTERNEDSTATE) {
                         if (mLayoutState == CollapsingToolbarLayoutState.COLLAPSED) {
+                            mIvArrow.setVisibility(View.GONE);
                             mLlContent.startAnimation(mShowSet);
                             mLlContent.setVisibility(View.VISIBLE);
                             mLlTitle.startAnimation(mHideSet);
