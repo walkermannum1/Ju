@@ -9,6 +9,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/title_bg"
@@ -20,6 +21,7 @@
         android:textColor="@android:color/white" />
 
     <TextView
+        android:id="@+id/settletime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -34,6 +36,7 @@
         android:textColor="@android:color/white" />
 
     <TextView
+        android:id="@+id/people"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

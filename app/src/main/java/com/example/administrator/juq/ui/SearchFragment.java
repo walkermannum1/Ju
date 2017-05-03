@@ -5,6 +5,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -21,12 +22,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.juq.R;
+import com.example.administrator.juq.model.Room;
 
 /**
  * Created by Administrator on 2017/4/20
  */
 
 public class SearchFragment extends Fragment {
+
+    public static final int REQUEST_DATE = 0;
+    public static final String DIALOG_DATE = "dialog date";
 
     private TabLayout mTabLayout;
     private Toolbar mToolbar;
@@ -40,7 +45,12 @@ public class SearchFragment extends Fragment {
     private AnimationSet mHideSet;
     private AnimationSet mShowSet;
     private TextView mSearch;
+    private TextView mSettletime;
+    private TextView mLocation;
+    private TextView mPeople;
+    private Room mRoom;
     private static SearchFragment fragment = null;
+
     public static Fragment newInstance() {
         if (fragment == null){
             synchronized (SearchFragment.class) {
@@ -61,9 +71,10 @@ public class SearchFragment extends Fragment {
         mLlContent = (LinearLayout) view.findViewById(R.id.ll_content);
         mIvArrow = (ImageView) view.findViewById(R.id.up_arrow);
         mLlTitle = (LinearLayout) view.findViewById(R.id.ll_title);
-        mSearch = (TextView) view.findViewById(R.id.search);
         initTabLayout();
         initData();
+
+        mSearch = (TextView) view.findViewById(R.id.search);
         mSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +86,18 @@ public class SearchFragment extends Fragment {
                 mLayoutState = CollapsingToolbarLayoutState.COLLAPSED;
             }
         });
+
+        mSettletime = (TextView) view.findViewById(R.id.settletime);
+        mSettletime.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(mRoom.getDate());
+                dialog.setTargetFragment(SearchFragment.this, REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
+            }
+        });
+
         return view;
     }
 
